@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organic Growth Architect | SEO Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['MyPlus Jakarta Sans', 'Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        midnight: '#0F172A',
+                        gold: '#C5A880',
+                        slateLight: '#F8FAFC',
+                        slateBorder: '#F1F5F9'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .text-gradient {
+            background: linear-gradient(135deg, #0F172A 40%, #C5A880 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="bg-white text-midnight font-sans antialiased selection:bg-gold selection:text-white">
+
+    <header class="w-full py-8 px-6 md:px-12 lg:px-24 bg-white border-b border-slate-100 fixed top-0 left-0 z-50 backdrop-blur-md bg-opacity-90">
+    </header>
+
+    <main class="pt-32 space-y-32 md:space-y-48 overflow-hidden">
+
+        <section class="reveal px-6 md:px-12 lg:px-24 max-w-7xl mx-auto min-h-[70vh] flex flex-col justify-center">
+            <div class="max-w-5xl">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight uppercase leading-[1.1] mb-8">
+                    Transforming Search Visibility Into <span class="text-gradient">Predictable Business Growth.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-600 max-w-2xl font-light leading-relaxed mb-12">
+                    Over the last 2 years, I have specialized in turning stagnant digital footprints into high-traffic, lead-generating assets. By blending advanced technical architecture, intentional on-page structural alignment, and localized authority, I engineer search performance that functions explicitly for your bottom line.
+                </p>
+                <div>
+                    <a href="#contact" class="inline-flex items-center px-8 py-4 bg-midnight text-white text-xs uppercase tracking-widest font-medium transition-all duration-300 hover:bg-gold hover:translate-y-[-2px] shadow-sm">
+                        Let's Talk Performance
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+            <p class="font-mono text-xs tracking-widest text-gold uppercase mb-2">// CAPABILITIES INDEX</p>
+            <h2 class="text-3xl font-bold uppercase tracking-tight mb-12">CORE CAPABILITIES & PILLARS</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-slateLight border border-slateBorder p-8 rounded-lg flex flex-col justify-between group transition-all duration-300 hover:border-slate-300">
+                    <span class="font-mono text-xs text-slate-400 mb-6">01 / STRUCTURAL</span>
+                    <div>
+                        <h3 class="text-xl font-bold uppercase tracking-tight text-midnight mb-3">On-Page SEO</h3>
+                        <p class="text-sm text-slate-600 font-light leading-relaxed">Engineering the technical foundation—optimizing site speed, executing strategic schema markup frameworks, and clean site architecture to ensure crawl priority.</p>
+                    </div>
+                </div>
+                <div class="bg-slateLight border border-slateBorder p-8 rounded-lg flex flex-col justify-between group transition-all duration-300 hover:border-slate-300 md:translate-y-4">
+                    <span class="font-mono text-xs text-slate-400 mb-6">02 / AUTHORITY</span>
+                    <div>
+                        <h3 class="text-xl font-bold uppercase tracking-tight text-midnight mb-3">Off-Page SEO</h3>
+                        <p class="text-sm text-slate-600 font-light leading-relaxed">Building sustainable digital equity and topical authority through strategic, trust-backed link acquisition and robust off-page signals search engines trust implicitly.</p>
+                    </div>
+                </div>
+                <div class="bg-slateLight border border-slateBorder p-8 rounded-lg flex flex-col justify-between group transition-all duration-300 hover:border-slate-300">
+                    <span class="font-mono text-xs text-slate-400 mb-6">03 / CONVERSION</span>
+                    <div>
+                        <h3 class="text-xl font-bold uppercase tracking-tight text-midnight mb-3">Content Writing</h3>
+                        <p class="text-sm text-slate-600 font-light leading-relaxed">Crafting deeply researched, user-centric copy that systematically matches real user search intent while maintaining a highly compelling and high-converting brand voice.</p>
+                    </div>
+                </div>
+                <div class="bg-slateLight border border-slateBorder p-8 rounded-lg flex flex-col justify-between group transition-all duration-300 hover:border-slate-300 md:translate-y-4">
+                    <span class="font-mono text-xs text-slate-400 mb-6">04 / EVOLUTION</span>
+                    <div>
+                        <h3 class="text-xl font-bold uppercase tracking-tight text-midnight mb-3">AI & Optimization</h3>
+                        <p class="text-sm text-slate-600 font-light leading-relaxed">Navigating cutting-edge AI search trend ecosystems and core search updates to future-proof rankings, ensuring digital platforms aggressively thrive through volatility.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section x-data="{ activeTab: 'all' }" class="reveal px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <p class="font-mono text-xs tracking-widest text-gold uppercase mb-2">// PROVEN CASE STUDIES</p>
+                    <h2 class="text-3xl font-bold uppercase tracking-tight">SELECTED SEARCH DEPLOYMENTS</h2>
+                </div>
+                
+                <div class="flex flex-wrap gap-2 md:self-end">
+                    <button @click="activeTab = 'all'" :class="activeTab === 'all' ? 'bg-midnight text-white' : 'bg-slateLight text-slate-600 hover:bg-slate-200'" class="px-5 py-2 text-xs font-mono uppercase tracking-wider transition-all duration-300">
+                        All Cases
+                    </button>
+                    <button @click="activeTab = 'local'" :class="activeTab === 'local' ? 'bg-midnight text-white' : 'bg-slateLight text-slate-600 hover:bg-slate-200'" class="px-5 py-2 text-xs font-mono uppercase tracking-wider transition-all duration-300">
+                        Local SEO
+                    </button>
+                    <button @click="activeTab = 'ecommerce'" :class="activeTab === 'ecommerce' ? 'bg-midnight text-white' : 'bg-slateLight text-slate-600 hover:bg-slate-200'" class="px-5 py-2 text-xs font-mono uppercase tracking-wider transition-all duration-300">
+                        E-Commerce
+                    </button>
+                    <button @click="activeTab = 'b2b'" :class="activeTab === 'b2b' ? 'bg-midnight text-white' : 'bg-slateLight text-slate-600 hover:bg-slate-200'" class="px-5 py-2 text-xs font-mono uppercase tracking-wider transition-all duration-300">
+                        B2B
+                    </button>
+                    <button @click="activeTab = 'b2c'" :class="activeTab === 'b2c' ? 'bg-midnight text-white' : 'bg-slateLight text-slate-600 hover:bg-slate-200'" class="px-5 py-2 text-xs font-mono uppercase tracking-wider transition-all duration-300">
+                        B2C
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div x-show="activeTab === 'all' || activeTab === 'local'" x-transition.opacity.duration.400ms class="border border-slateBorder p-6 bg-white flex flex-col justify-between space-y-6 transition-all duration-300 hover:border-gold hover:-translate-y-1 hover:shadow-sm">
+                    <div>
+                        <span class="inline-block px-3 py-1 bg-slateLight text-[10px] font-mono uppercase tracking-widest text-gold mb-4">
+                            Local SEO & Map Expansion
+                        </span>
+                        <h3 class="text-lg font-bold uppercase tracking-tight mb-3">Multi-Location Veterinary Clinic</h3>
+                        
+                        <div class="space-y-3 font-light text-xs text-slate-600">
+                            <p><strong class="font-medium text-midnight uppercase tracking-wider text-[10px] block mb-1">The Challenge:</strong> Invisible in high-intent maps pack results for critical emergency medical terms within a 15-mile service radius.</p>
+                            <p><strong class="font-medium text-midnight uppercase tracking-wider text-[10px] block mb-1">The Strategy:</strong> Deployed granular Google Business Profile architecture, localized schema injection, and high-authority geo-targeted local citations.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100">
+                        <span class="block font-mono text-[10px] text-slate-400 uppercase mb-1">Business ROI Achieved</span>
+                        <p class="text-lg font-bold text-midnight tracking-tight">#1 Local Map Pack Spot & +45% Organic Call Volume</p>
+                    </div>
+                </div>
+
+                <div x-show="activeTab === 'all' || activeTab === 'ecommerce'" x-transition.opacity.duration.400ms class="border border-slateBorder p-6 bg-white flex flex-col justify-between space-y-6 transition-all duration-300 hover:border-gold hover:-translate-y-1 hover:shadow-sm">
+                    <div>
+                        <span class="inline-block px-3 py-1 bg-slateLight text-[10px] font-mono uppercase tracking-widest text-gold mb-4">
+                            E-Commerce Scaling
+                        </span>
+                        <h3 class="text-lg font-bold uppercase tracking-tight mb-3">Premium FMCG Consumer Brand</h3>
+                        
+                        <div class="space-y-3 font-light text-xs text-slate-600">
+                            <p><strong class="font-medium text-midnight uppercase tracking-wider text-[10px] block mb-1">The Challenge:</strong> Severe indexation bloat stemming from infinite dynamic category filters alongside dropping product-page traffic channels.</p>
+                            <p><strong class="font-medium text-midnight uppercase tracking-wider text-[10px] block mb-1">The Strategy:</strong> Deep parameter restructuring, dynamic clean indexation pathways, and robust advanced Product Schema configurations.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100">
+                        <span class="block font-mono text-[10px] text-slate-400 uppercase mb-1">Business ROI Achieved</span>
+                        <p class="text-lg font-bold text-midnight tracking-tight">+185% Target Organic Transaction Scaling</p>
+                    </div>
+                </div>
+
+                <div x-show="activeTab === 'all' || activeTab === 'b2b'" x-transition.opacity.duration.400ms class="border border-slateBorder p-6 bg-white flex flex-col justify-between space-y-6 transition-all duration-300 hover:border-gold hover:-translate-y-1 hover:shadow-sm">
+                    <div>
+                        <span class="inline-block px-3 py-1 bg-slateLight text-[10px] font-mono uppercase tracking-widest text-gold mb-4">
+                            B2B Acquisition
+                        </span>
+                        <h3 class="text-lg font-bold uppercase tracking-tight mb-3">Enterprise Marketing Agency</h3>
+                        
+                        <div class="space-y-3 font-light text-xs text-slate-600">
+                            <p><strong class="font-medium text-midnight uppercase tracking-wider text-[10px] block mb-1">The Challenge:</strong> Ranking exclusively for informational phrases with zero-intent; failure to convert or sign premium corporate clients.</p>
+                            <p><strong class="font-medium text-midnight uppercase tracking-wider text-[10px] block mb-1">The Strategy:</strong> Implemented intentional commercial keyword maps and streamlined high-converting, deeply researched semantic topical silos.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100">
+                        <span class="block font-mono text-[10px] text-slate-400 uppercase mb-1">Business ROI Achieved</span>
+                        <p class="text-lg font-bold text-midnight tracking-tight">1,500+ High-Intent Commercial Keywords Secured</p>
+                    </div>
+                </div>
+
+                <div x-show="activeTab === 'all' || activeTab === 'b2c'" x-transition.opacity.duration.400ms class="border border-slateBorder p-6 bg-white flex flex-col justify-between space-y-6 transition-all duration-300 hover:border-gold hover:-translate-y-1 hover:shadow-sm">
+                    <div>
+                        <span class="inline-block px-3 py-1 bg-slateLight text-[10px] font-mono uppercase tracking-widest text-gold mb-4">
+                            B2C Lead Generation
+                        </span>
+                        <h3 class="text-lg font-bold uppercase tracking-tight mb-3">Regional Educational Institutes</h3>
+                        
+                        <div class="space-y-3 font-light text-xs text-slate-600">
+                            <p><strong class="font-medium text-midnight uppercase tracking-wider text-[10px] block mb-1">The Challenge:</strong> High seasonal traffic drops and intense local competition over prospective student program search queries.</p>
+                            <p><strong class="font-medium text-midnight uppercase tracking-wider text-[10px] block mb-1">The Strategy:</strong> Created highly comprehensive localized curriculum program hubs engineered around user search intent maps.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100">
+                        <span class="block font-mono text-[10px] text-slate-400 uppercase mb-1">Business ROI Achieved</span>
+                        <p class="text-lg font-bold text-midnight tracking-tight">85% Increase in Organic Enrollment Inquiries</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+            <p class="font-mono text-xs tracking-widest text-gold uppercase mb-2">// THE ARCHITECTURAL FRAMEWORK</p>
+            <h2 class="text-3xl font-bold uppercase tracking-tight mb-12">MY SEO PHILOSOPHY</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="border border-slateBorder p-8 bg-white flex flex-col justify-between transition-all duration-300 hover:border-gold hover:-translate-y-1 hover:shadow-sm group">
+                    <div>
+                        <span class="font-mono text-xs text-gold block mb-6">PILLAR 01</span>
+                        <h3 class="text-xl font-bold uppercase tracking-tight mb-4 group-hover:text-gold transition-colors duration-300">Intent Over Volume</h3>
+                        <p class="text-sm font-light text-slate-600 leading-relaxed mb-6">
+                            Vanity metrics are an empty asset. I ruthlessly prioritize audience search intent over hollow, highly competitive traffic volume numbers.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 border-t border-slate-200/60 pt-4 font-mono text-xs text-slate-500">
+                        <li class="flex items-start gap-2">
+                            <span class="text-gold font-medium">→</span>
+                            <span>Targeting highly commercial clusters</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-gold font-medium">→</span>
+                            <span>Matching specific pipeline context</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-gold font-medium">→</span>
+                            <span>Eliminating high-bounce queries</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="border border-slateBorder p-8 bg-white flex flex-col justify-between transition-all duration-300 hover:border-gold hover:-translate-y-1 hover:shadow-sm group">
+                    <div>
+                        <span class="font-mono text-xs text-gold block mb-6">PILLAR 02</span>
+                        <h3 class="text-xl font-bold uppercase tracking-tight mb-4 group-hover:text-gold transition-colors duration-300">Build Authority in Your Niche</h3>
+                        <p class="text-sm font-light text-slate-600 leading-relaxed mb-6">
+                            True authority means becoming the trusted primary resource. I develop semantic entity mappings so search nodes view your site as a clear domain expert.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 border-t border-slate-200/60 pt-4 font-mono text-xs text-slate-500">
+                        <li class="flex items-start gap-2">
+                            <span class="text-gold font-medium">→</span>
+                            <span>Deep internal topical silo linking</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-gold font-medium">→</span>
+                            <span>Comprehensive E-E-A-T footprint expansion</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-gold font-medium">→</span>
+                            <span>Earning premium trust citations</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="border border-slateBorder p-8 bg-white flex flex-col justify-between transition-all duration-300 hover:border-gold hover:-translate-y-1 hover:shadow-sm group">
+                    <div>
+                        <span class="font-mono text-xs text-gold block mb-6">PILLAR 03</span>
+                        <h3 class="text-xl font-bold uppercase tracking-tight mb-4 group-hover:text-gold transition-colors duration-300">Optimize Every Click</h3>
+                        <p class="text-sm font-light text-slate-600 leading-relaxed mb-6">
+                            Attracting targeted traffic is only the first step. The ultimate victory is structural layout execution that flawlessly converts visibility into real revenue.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 border-t border-slate-200/60 pt-4 font-mono text-xs text-slate-500">
+                        <li class="flex items-start gap-2">
+                            <span class="text-gold font-medium">→</span>
+                            <span>Eliminating critical landing friction</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-gold font-medium">→</span>
+                            <span>Sleek, high-converting UX paths</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-gold font-medium">→</span>
+                            <span>Core Web Vitals micro-optimization</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+            <p class="font-mono text-xs tracking-widest text-gold uppercase mb-2">// EXECUTION METRICS</p>
+            <h2 class="text-3xl font-bold uppercase tracking-tight mb-16">MY SEO ROADMAP</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+                <div class="group relative space-y-4 transition-all duration-300 hover:-translate-y-1">
+                    <div class="font-mono text-6xl font-medium text-slate-100 transition-colors duration-300 group-hover:text-gold selection:text-midnight">01</div>
+                    <h3 class="text-lg font-bold uppercase tracking-tight transition-colors duration-300 group-hover:text-midnight">SEO Audit & Research</h3>
+                    <p class="text-xs font-light text-slate-600 leading-relaxed">
+                        Isolating crawl abnormalities, analyzing internal log data sets, resolving indexing blockages, and identifying critical structural benchmarks immediately.
+                    </p>
+                </div>
+                <div class="group relative space-y-4 transition-all duration-300 hover:-translate-y-1">
+                    <div class="font-mono text-6xl font-medium text-slate-100 transition-colors duration-300 group-hover:text-gold selection:text-midnight">02</div>
+                    <h3 class="text-lg font-bold uppercase tracking-tight transition-colors duration-300 group-hover:text-midnight">Keyword & Content Planning</h3>
+                    <p class="text-xs font-light text-slate-600 leading-relaxed">
+                        Mapping high-intent transactional keyword clusters and constructing tightly woven content silos to comprehensively signal specialized domain expertise.
+                    </p>
+                </div>
+                <div class="group relative space-y-4 transition-all duration-300 hover:-translate-y-1">
+                    <div class="font-mono text-6xl font-medium text-slate-100 transition-colors duration-300 group-hover:text-gold selection:text-midnight">03</div>
+                    <h3 class="text-lg font-bold uppercase tracking-tight transition-colors duration-300 group-hover:text-midnight">On-Page + Technical Optimization</h3>
+                    <p class="text-xs font-light text-slate-600 leading-relaxed">
+                        Deploying itemized custom structured schema layers, asset minification layouts, content optimization updates, and semantic HTML rendering adjustments.
+                    </p>
+                </div>
+                <div class="group relative space-y-4 transition-all duration-300 hover:-translate-y-1">
+                    <div class="font-mono text-6xl font-medium text-slate-100 transition-colors duration-300 group-hover:text-gold selection:text-midnight">04</div>
+                    <h3 class="text-lg font-bold uppercase tracking-tight transition-colors duration-300 group-hover:text-midnight">Authority Building & Growth Monitoring</h3>
+                    <p class="text-xs font-light text-slate-600 leading-relaxed">
+                        Acquiring trust-backed link equity and monitoring live search ecosystem shifts via real-time Google Search Console and GA4 data feeds to scale performance.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="reveal w-full bg-midnight text-white pt-24 pb-12 px-6 md:px-12 lg:px-24">
+            <div class="max-w-7xl mx-auto flex flex-col items-center text-center space-y-12">
+                <div class="space-y-4 max-w-3xl">
+                    <p class="font-mono text-xs tracking-widest text-gold uppercase">// ACQUISITION ENGINE</p>
+                    <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-tight leading-tight">
+                        Ready To Scale Beyond Incremental Margins?
+                    </h2>
+                    <p class="text-slate-400 font-light max-w-xl mx-auto text-sm md:text-base">
+                        Let’s bypass vanity impressions and create institutional-grade digital traffic pathways that maximize capital performance.
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                    <a href="mailto:growth@seoarchitect.io" class="inline-block text-center px-8 py-4 bg-white text-midnight text-xs uppercase tracking-widest font-mono font-medium transition-all duration-300 hover:bg-gold hover:text-white">
+                        growth@seoarchitect.io
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" class="inline-block text-center px-8 py-4 border border-slate-700 text-slate-300 text-xs uppercase tracking-widest font-mono font-medium transition-all duration-300 hover:border-white hover:text-white">
+                        LinkedIn Profile
+                    </a>
+                </div>
+
+                <div class="w-full pt-24 border-t border-slate-800 flex justify-center items-center text-xs font-mono text-slate-500">
+                    <p>made by Diganta</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            ScrollReveal().reveal('.reveal', {
+                delay: 150,
+                distance: '40px',
+                duration: 1000,
+                easing: 'cubic-bezier(0.5, 0, 0, 1)',
+                origin: 'bottom',
+                interval: 80,
+                reset: false
+            });
+        });
+    </script>
+</body>
+</html>
