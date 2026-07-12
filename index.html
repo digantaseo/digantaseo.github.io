@@ -21,6 +21,39 @@ body{
   color:var(--ink);overflow-x:hidden;
 }
 
+/* ── HEADER ── */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  display:flex;align-items:center;justify-content:center;
+  padding:18px 4vw;
+  border-bottom:1px solid transparent;
+  transition:border-color .3s,background .3s,backdrop-filter .3s;
+}
+.site-header.scrolled{
+  border-color:rgba(26,18,8,.10);
+  background:rgba(247,243,238,.82);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.hdr-nav{display:flex;align-items:center;gap:40px;}
+.hdr-nav a{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:12px;font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink);
+  text-decoration:none;position:relative;
+  opacity:.65;transition:opacity .2s;
+}
+.hdr-nav a::after{
+  content:'';position:absolute;left:0;bottom:-3px;
+  width:0;height:1.5px;background:var(--accent);
+  transition:width .25s ease;
+}
+.hdr-nav a:hover{opacity:1;}
+.hdr-nav a:hover::after{width:100%;}
+
+/* push hero below fixed header */
+.hero{padding-top:100px;}
+
 /* CURSOR */
 .cursor-ring{position:fixed;width:40px;height:40px;border:2px solid var(--ink);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .2s,border-color .2s;mix-blend-mode:multiply;}
 .cursor-dot{position:fixed;width:6px;height:6px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);}
@@ -67,7 +100,7 @@ body.hovering .cursor-ring{width:58px;height:58px;background:rgba(232,91,42,.1);
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 15%;
 }
 
 /* Floating icons */
@@ -141,36 +174,81 @@ body.hovering .cursor-ring{width:58px;height:58px;background:rgba(232,91,42,.1);
   margin-bottom:48px;line-height:1.15;
 }
 
-/* ── CARDS ── */
-.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-.card{
-  position:relative;background:#fff;
-  padding:34px 26px 30px;border-radius:4px;
+/* ── CASE STUDY CARDS ── */
+.cs-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:28px;align-items:start;
+}
+.cs-card{
+  position:relative;background:#fff;border-radius:4px;
+  overflow:visible;display:flex;flex-direction:column;
+  aspect-ratio:2/3;
   opacity:0;transform:translateY(28px);
   transition:opacity .6s,transform .6s,box-shadow .25s;
-  /* clip so SVG frame overflows cleanly */
-  overflow:visible;
+  text-decoration:none;color:var(--ink);
 }
-.card.visible{opacity:1;transform:translateY(0);}
-.card:hover{box-shadow:6px 6px 0 var(--ink);transform:translateY(-4px);}
-/* doodle frame: proper SVG positioned over card */
-.card-frame{position:absolute;inset:-5px;width:calc(100% + 10px);height:calc(100% + 10px);overflow:visible;pointer-events:none;}
-.card-tag{
-  font-family:'Caveat',cursive;font-size:15px;color:var(--gold);
-  margin-bottom:12px;display:block;line-height:1.4;
+.cs-card.visible{opacity:1;transform:translateY(0);}
+.cs-card:hover{box-shadow:7px 7px 0 var(--ink);transform:translateY(-5px);}
+/* doodle frame */
+.cs-frame{position:absolute;inset:-5px;width:calc(100% + 10px);height:calc(100% + 10px);overflow:visible;pointer-events:none;border-radius:4px;}
+/* image top 40% */
+.cs-img{
+  width:100%;flex:0 0 40%;
+  overflow:hidden;background:var(--paper);
+  border-radius:4px 4px 0 0;position:relative;
 }
-.card-metric{
+.cs-img img{
+  width:100%;height:100%;object-fit:cover;object-position:top center;
+  transition:transform .45s ease;display:block;
+}
+.cs-card:hover .cs-img img{transform:scale(1.05);}
+/* placeholder when no image */
+.cs-img-ph{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--paper);
+}
+/* content bottom 60% */
+.cs-body{
+  flex:1;padding:22px 24px 24px;
+  display:flex;flex-direction:column;
+  border-top:1.5px solid rgba(26,18,8,.08);
+  overflow:hidden;border-radius:0 0 4px 4px;
+  background:#fff;
+}
+.cs-niche{
+  font-family:'Caveat',cursive;font-size:15px;
+  color:var(--gold);margin-bottom:6px;display:block;
+}
+.cs-name{
   font-family:'DM Serif Display',serif;
-  font-size:clamp(40px,4.8vw,60px);
-  line-height:1;color:var(--ink);
-  margin-bottom:14px;letter-spacing:-.02em;
+  font-size:clamp(18px,1.6vw,22px);line-height:1.2;
+  margin-bottom:16px;
 }
-.card-title{
+.cs-services-lbl{
   font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;
-  font-size:12px;text-transform:uppercase;letter-spacing:.07em;
-  margin-bottom:10px;
+  font-size:10px;text-transform:uppercase;letter-spacing:.09em;
+  color:rgba(26,18,8,.45);margin-bottom:10px;
 }
-.card-desc{font-size:13px;line-height:1.68;color:var(--ink-light);}
+.cs-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.cs-list li{
+  font-size:13px;line-height:1.45;color:var(--ink-light);
+  display:flex;align-items:center;gap:9px;
+}
+.cs-list li::before{
+  content:'';width:5px;height:5px;border-radius:50%;
+  background:var(--accent);flex-shrink:0;
+}
+.cs-link{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:18px;padding-top:16px;align-self:flex-start;
+  border-top:1px solid rgba(26,18,8,.08);
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
+  font-size:11px;text-transform:uppercase;letter-spacing:.09em;
+  color:var(--accent);text-decoration:none;
+  transition:gap .2s;
+}
+.cs-card:hover .cs-link{gap:14px;}
 
 /* ── WORKFLOW ── */
 .wf-wrap{background:var(--paper);border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);}
@@ -273,10 +351,12 @@ body.hovering .cursor-ring{width:58px;height:58px;background:rgba(232,91,42,.1);
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
-  .hero{grid-template-columns:1fr;gap:28px;padding:28px 4vw;min-height:auto;}
+  .site-header{display:none;}
+  .hero{grid-template-columns:1fr;gap:28px;padding:28px 4vw;min-height:auto;padding-top:28px;}
   .hero-visual{height:340px;order:-1;}
   .hero-photo-wrap{width:230px;height:330px;}
-  .cards-grid{grid-template-columns:1fr;}
+  .cs-grid{grid-template-columns:1fr;}
+  .cs-card{aspect-ratio:auto;}
   .cta-arr{display:none;}
 }
 @media(max-width:640px){
@@ -289,7 +369,15 @@ body.hovering .cursor-ring{width:58px;height:58px;background:rgba(232,91,42,.1);
 <div class="cursor-ring" id="cr"></div>
 <div class="cursor-dot" id="cd"></div>
 
-<section class="hero">
+<header class="site-header" id="site-header">
+  <nav class="hdr-nav">
+    <a href="/">About Me</a>
+    <a href="#cards">My Works</a>
+    <a href="#footer" onclick="event.preventDefault();document.getElementById('footer').scrollIntoView({behavior:'smooth'})">Contact Me</a>
+  </nav>
+</header>
+
+<section class="hero" id="about">
   <div class="hero-visual">
     <div class="df df1">
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
@@ -369,46 +457,99 @@ body.hovering .cursor-ring{width:58px;height:58px;background:rgba(232,91,42,.1);
 
 <div id="cards">
 <section class="section">
-  <div class="sec-label reveal">📊 Proven Results</div>
-  <h2 class="sec-title reveal">Proven Growth Frameworks</h2>
-  <div class="cards-grid">
+  <div class="sec-label reveal">💼 Case Studies</div>
+  <h2 class="sec-title reveal">SEO Work That Speaks Results</h2>
+  <div class="cs-grid">
 
-    <div class="card" data-delay="0">
-      <svg class="card-frame" xmlns="http://www.w3.org/2000/svg">
+    <!-- CARD 1 · Veterinary Clinic -->
+    <a href="vet.html" class="cs-card" data-delay="0">
+      <svg class="cs-frame" xmlns="http://www.w3.org/2000/svg">
         <rect x="2" y="2" width="100%" height="100%" rx="4"
           style="width:calc(100% - 4px);height:calc(100% - 4px);"
           fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-dasharray="6 3"/>
       </svg>
-      <span class="card-tag">B2B Brands · Professional Services</span>
-      <div class="card-metric" style="color:var(--accent);">+140%</div>
-      <div class="card-title">Organic Traffic Growth</div>
-      <p class="card-desc">Worked with a Marketing Agency, implementing strategic keyword targeting, technical SEO, and content optimisation to improve search rankings and website authority. Focused on attracting high-intent business audiences, driving consistent organic traffic growth and establishing a strong digital presence in competitive markets.
-</p>
-    </div>
+      <div class="cs-img">
+        <img src="case1.jpg" alt="Veterinary Clinic Website Screenshot"
+          onerror="this.parentElement.innerHTML='<div class=\'cs-img-ph\'><svg width=\'56\' height=\'56\' viewBox=\'0 0 56 56\' fill=\'none\'><rect x=\'4\' y=\'10\' width=\'48\' height=\'36\' rx=\'3\' stroke=\'var(--ink)\' stroke-width=\'1.8\' stroke-dasharray=\'4 2\'/><circle cx=\'18\' cy=\'24\' r=\'5\' fill=\'rgba(200,136,10,.25)\' stroke=\'var(--gold)\' stroke-width=\'1.5\'/><path d=\'M4 34 L18 22 L28 30 L38 20 L52 32\' stroke=\'var(--accent)\' stroke-width=\'1.8\' fill=\'none\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/></svg></div>'">
+      </div> 
+      <div class="cs-body">
+        
+        <div class="cs-name">Veterinary Clinic</div>
+        <div class="cs-services-lbl">SEO Works</div>
+        <ul class="cs-list">
+          <li>ON-page SEO</li>
+          <li>Off-page SEO</li>
+          <li>Content Optimisation</li>
+          <li>GMB Optimisation</li>
+        </ul>
+        <span class="cs-link">
+          View Case Study
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 7H12M8.5 3.5L12 7L8.5 10.5" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </div>
+    </a>
 
-    <div class="card" data-delay="140">
-      <svg class="card-frame" xmlns="http://www.w3.org/2000/svg">
+    <!-- CARD 2 · Marketing Agency -->
+    <a href="agency.html" class="cs-card" data-delay="140">
+      <svg class="cs-frame" xmlns="http://www.w3.org/2000/svg">
         <rect x="2" y="2" width="100%" height="100%" rx="4"
           style="width:calc(100% - 4px);height:calc(100% - 4px);"
           fill="none" stroke="var(--accent2)" stroke-width="1.8" stroke-dasharray="6 3"/>
       </svg>
-      <span class="card-tag" style="color:var(--accent2);">B2C Brands · Education &amp; Healthcare</span>
-      <div class="card-metric" style="color:var(--accent2);">#1 Rank</div>
-      <div class="card-title">For Target Keywords</div>
-      <p class="card-desc">Worked with Education and Healthcare clients, executing Local SEO and Google My Business (GMB) optimisation strategies to dominate local search results. Helped convert passive viewers into qualified leads by targeting high-intent audiences, improving map visibility, and driving consistent enquiries from the right local customers.</p>
-    </div>
+      <div class="cs-img">
+        <img src="case2.jpg" alt="Marketing Agency Website Screenshot"
+          onerror="this.parentElement.innerHTML='<div class=\'cs-img-ph\'><svg width=\'56\' height=\'56\' viewBox=\'0 0 56 56\' fill=\'none\'><rect x=\'4\' y=\'10\' width=\'48\' height=\'36\' rx=\'3\' stroke=\'var(--ink)\' stroke-width=\'1.8\' stroke-dasharray=\'4 2\'/><circle cx=\'18\' cy=\'24\' r=\'5\' fill=\'rgba(200,136,10,.25)\' stroke=\'var(--gold)\' stroke-width=\'1.5\'/><path d=\'M4 34 L18 22 L28 30 L38 20 L52 32\' stroke=\'var(--accent2)\' stroke-width=\'1.8\' fill=\'none\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/></svg></div>'">
+      </div>
+      <div class="cs-body">
+        <span class="cs-niche" style="color:var(--accent2);"></span>
+        <div class="cs-name">Marketing Agency</div>
+        <div class="cs-services-lbl">SEO Works</div>
+        <ul class="cs-list">
+          <li>Technical SEO Audit</li>
+          <li>Keyword Strategy</li>
+          <li>Content Optimisation</li>
+          <li>Authority Building</li>
+        </ul>
+        <span class="cs-link" style="color:var(--accent2);">
+          View Case Study
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 7H12M8.5 3.5L12 7L8.5 10.5" stroke="var(--accent2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </div>
+    </a>
 
-    <div class="card" data-delay="280">
-      <svg class="card-frame" xmlns="http://www.w3.org/2000/svg">
+    <!-- CARD 3 · FMCG Business -->
+    <a href="fmcg.html" class="cs-card" data-delay="280">
+      <svg class="cs-frame" xmlns="http://www.w3.org/2000/svg">
         <rect x="2" y="2" width="100%" height="100%" rx="4"
           style="width:calc(100% - 4px);height:calc(100% - 4px);"
           fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-dasharray="6 3"/>
       </svg>
-      <span class="card-tag" style="color:var(--gold);">E-commerce · FMCG &amp; Retail</span>
-      <div class="card-metric" style="color:var(--gold);">3.5x CTR</div>
-      <div class="card-title">Click-Through Rate</div>
-      <p class="card-desc">Worked with FMCG brands to drive online sales through focused website SEO strategies. Optimised product pages, category structures, and search visibility to attract high-intent buyers — generating consistent revenue growth and stronger click-through rates. Additionally expanded brand reach by listing and optimising products on Amazon and Blinkit.</p>
-    </div>
+      <div class="cs-img">
+        <img src="case3.jpg" alt="FMCG Business Website Screenshot"
+          onerror="this.parentElement.innerHTML='<div class=\'cs-img-ph\'><svg width=\'56\' height=\'56\' viewBox=\'0 0 56 56\' fill=\'none\'><rect x=\'4\' y=\'10\' width=\'48\' height=\'36\' rx=\'3\' stroke=\'var(--ink)\' stroke-width=\'1.8\' stroke-dasharray=\'4 2\'/><circle cx=\'18\' cy=\'24\' r=\'5\' fill=\'rgba(200,136,10,.25)\' stroke=\'var(--gold)\' stroke-width=\'1.5\'/><path d=\'M4 34 L18 22 L28 30 L38 20 L52 32\' stroke=\'var(--gold)\' stroke-width=\'1.8\' fill=\'none\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/></svg></div>'">
+      </div>
+      <div class="cs-body">
+        <span class="cs-niche" style="color:var(--gold);"></span>
+        <div class="cs-name">FMCG Business</div>
+        <div class="cs-services-lbl">SEO Works</div>
+        <ul class="cs-list">
+          <li>E-commerce SEO</li>
+          <li>Product Page Optimisation</li>
+          <li>Category Optimization</li>
+          <li>Amazon &amp; Blinkit Listing</li>
+        </ul>
+        <span class="cs-link" style="color:var(--gold);">
+          View Case Study
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 7H12M8.5 3.5L12 7L8.5 10.5" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </div>
+    </a>
 
   </div>
 </section>
@@ -537,13 +678,14 @@ body.hovering .cursor-ring{width:58px;height:58px;background:rgba(232,91,42,.1);
       <h2 class="ft-title">
         Ready to Scale Your<br><em>Organic Growth?</em>
       </h2>
-      <p class="ft-sub">
-        Tired of traffic that doesn't convert? Let's discuss your business and create an SEO strategy that drives real, measurable results.
-      </p>
-      <div class="ft-btns">
+         <div class="ft-btns">
+        <a href="tel:6290338330" class="ftbtn p">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2.5 1.5H5.5L7 4.5L5 5.5C5.8 7.2 7.8 9.2 9.5 10L10.5 8L13.5 9.5V12.5C13.5 13 13 13.5 12.5 13.5C6.5 13.5 1.5 8.5 1.5 2.5C1.5 2 2 1.5 2.5 1.5Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          Call Me
+        </a>
         <a href="mailto:diganta.seo@gmail.com" class="ftbtn s">
           <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="1.5" y="3.5" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 4.5L7.5 9L13.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-           Drop a Mail
+           Mail Me
         </a>
       </div>
       <div class="ft-strip"> Don't chase rankings. Let rankings chase you. </div>
@@ -555,6 +697,12 @@ body.hovering .cursor-ring{width:58px;height:58px;background:rgba(232,91,42,.1);
 
 
 <script>
+// HEADER SCROLL
+const hdr=document.getElementById('site-header');
+window.addEventListener('scroll',()=>{
+  hdr.classList.toggle('scrolled',window.scrollY>40);
+});
+
 // CURSOR
 const cr=document.getElementById('cr'),cd=document.getElementById('cd');
 let mx=0,my=0,rx=0,ry=0;
@@ -579,7 +727,7 @@ t.innerHTML=h;
 const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
   if(e.isIntersecting){const d=+(e.target.dataset.delay||0);setTimeout(()=>e.target.classList.add('visible'),d);}
 }),{threshold:.12});
-document.querySelectorAll('.card,.reveal').forEach(el=>obs.observe(el));
+document.querySelectorAll('.cs-card,.reveal').forEach(el=>obs.observe(el));
 
 const sobs=new IntersectionObserver(entries=>entries.forEach(e=>{
   if(e.isIntersecting){const n=+(e.target.dataset.step||1);setTimeout(()=>e.target.classList.add('visible'),(n-1)*170);}
