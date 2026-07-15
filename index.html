@@ -160,6 +160,29 @@ body.hovering .cursor-ring{width:58px;height:58px;background:rgba(232,91,42,.1);
 .tstar{color:var(--accent);font-size:16px;}
 @keyframes mq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
+/* ── TOOLS TICKER ── */
+.tools-ticker-wrap{
+  width:100%;overflow:hidden;
+  border-top:1.5px solid var(--ink);
+  border-bottom:1.5px solid var(--ink);
+  background:var(--cream);
+  padding:22px 0;
+}
+.tools-track{
+  display:flex;align-items:center;
+  width:max-content;
+  animation:mq 32s linear infinite;
+}
+
+.tool-chip{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:0 36px;white-space:nowrap;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:700;font-size:16px;
+  letter-spacing:.03em;color:var(--ink);
+}
+.tool-sep{color:var(--gold);font-size:20px;line-height:1;flex-shrink:0;}
+
 /* ── SECTION SHELL ── */
 .section{max-width:1280px;margin:0 auto;padding:80px 4vw;}
 .sec-label{
@@ -182,7 +205,7 @@ body.hovering .cursor-ring{width:58px;height:58px;background:rgba(232,91,42,.1);
 .cs-card{
   position:relative;background:#fff;border-radius:4px;
   overflow:visible;display:flex;flex-direction:column;
-  aspect-ratio:2/3;
+  aspect-ratio:1/1;
   opacity:0;transform:translateY(28px);
   transition:opacity .6s,transform .6s,box-shadow .25s;
   text-decoration:none;color:var(--ink);
@@ -191,14 +214,15 @@ body.hovering .cursor-ring{width:58px;height:58px;background:rgba(232,91,42,.1);
 .cs-card:hover{box-shadow:7px 7px 0 var(--ink);transform:translateY(-5px);}
 /* doodle frame */
 .cs-frame{position:absolute;inset:-5px;width:calc(100% + 10px);height:calc(100% + 10px);overflow:visible;pointer-events:none;border-radius:4px;}
-/* image top 40% */
+/* image — 75% of card, never crop (all images 1900×910) */
 .cs-img{
-  width:100%;flex:0 0 40%;
+  width:100%;flex:0 0 75%;
   overflow:hidden;background:var(--paper);
   border-radius:4px 4px 0 0;position:relative;
 }
 .cs-img img{
-  width:100%;height:100%;object-fit:cover;object-position:top center;
+  width:100%;height:100%;
+  object-fit:contain;object-position:top center;
   transition:transform .45s ease;display:block;
 }
 .cs-card:hover .cs-img img{transform:scale(1.05);}
@@ -208,47 +232,29 @@ body.hovering .cursor-ring{width:58px;height:58px;background:rgba(232,91,42,.1);
   display:flex;align-items:center;justify-content:center;
   background:var(--paper);
 }
-/* content bottom 60% */
+/* bottom strip — name + link, stacked, centred */
 .cs-body{
-  flex:1;padding:22px 24px 24px;
+  flex:1;padding:14px 18px 16px;
   display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;gap:8px;
   border-top:1.5px solid rgba(26,18,8,.08);
   overflow:hidden;border-radius:0 0 4px 4px;
   background:#fff;
 }
-.cs-niche{
-  font-family:'Caveat',cursive;font-size:15px;
-  color:var(--gold);margin-bottom:6px;display:block;
-}
 .cs-name{
   font-family:'DM Serif Display',serif;
-  font-size:clamp(18px,1.6vw,22px);line-height:1.2;
-  margin-bottom:16px;
-}
-.cs-services-lbl{
-  font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;
-  font-size:10px;text-transform:uppercase;letter-spacing:.09em;
-  color:rgba(26,18,8,.45);margin-bottom:10px;
-}
-.cs-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
-.cs-list li{
-  font-size:13px;line-height:1.45;color:var(--ink-light);
-  display:flex;align-items:center;gap:9px;
-}
-.cs-list li::before{
-  content:'';width:5px;height:5px;border-radius:50%;
-  background:var(--accent);flex-shrink:0;
+  font-size:clamp(15px,1.3vw,18px);line-height:1.2;
+  margin:0;
 }
 .cs-link{
-  display:inline-flex;align-items:center;gap:8px;
-  margin-top:18px;padding-top:16px;align-self:flex-start;
-  border-top:1px solid rgba(26,18,8,.08);
+  display:inline-flex;align-items:center;gap:6px;flex-shrink:0;
   font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
   font-size:11px;text-transform:uppercase;letter-spacing:.09em;
   color:var(--accent);text-decoration:none;
   transition:gap .2s;
 }
-.cs-card:hover .cs-link{gap:14px;}
+.cs-card:hover .cs-link{gap:11px;}
 
 /* ── WORKFLOW ── */
 .wf-wrap{background:var(--paper);border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);}
@@ -357,6 +363,8 @@ body.hovering .cursor-ring{width:58px;height:58px;background:rgba(232,91,42,.1);
   .hero-photo-wrap{width:230px;height:330px;}
   .cs-grid{grid-template-columns:1fr;}
   .cs-card{aspect-ratio:auto;}
+  .cs-img{flex:0 0 auto;height:200px;}
+  .cs-img img{object-fit:contain;object-position:top center;}
   .cta-arr{display:none;}
 }
 @media(max-width:640px){
@@ -422,7 +430,7 @@ body.hovering .cursor-ring{width:58px;height:58px;background:rgba(232,91,42,.1);
 
     <div class="hero-photo-wrap">
       <span class="photo-lbl">Your SEO Expert 📈</span>
-      <img src="diganta.jpg" alt="Diganta Das" class="hero-photo">
+      <img src="images/Diganta.jpg" alt="Diganta Das" class="hero-photo">
     </div>
   </div>
 
@@ -458,30 +466,22 @@ body.hovering .cursor-ring{width:58px;height:58px;background:rgba(232,91,42,.1);
 <div id="cards">
 <section class="section">
   <div class="sec-label reveal">💼 Case Studies</div>
-  <h2 class="sec-title reveal">SEO Work That Speaks Results</h2>
+  <h2 class="sec-title reveal">My Recent SEO Work That Speaks Results</h2>
   <div class="cs-grid">
 
-    <!-- CARD 1 · Veterinary Clinic -->
-    <a href="vet.html" class="cs-card" data-delay="0">
+    <!-- CARD 1 · Paumanok Veterinary Hospital -->
+    <a href="paumanokcasestudy.html" class="cs-card" data-delay="0">
       <svg class="cs-frame" xmlns="http://www.w3.org/2000/svg">
         <rect x="2" y="2" width="100%" height="100%" rx="4"
           style="width:calc(100% - 4px);height:calc(100% - 4px);"
           fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-dasharray="6 3"/>
       </svg>
       <div class="cs-img">
-        <img src="case1.jpg" alt="Veterinary Clinic Website Screenshot"
+        <img src="images/Paumanokhome.jpg" alt="Paumanok Website Screenshot"
           onerror="this.parentElement.innerHTML='<div class=\'cs-img-ph\'><svg width=\'56\' height=\'56\' viewBox=\'0 0 56 56\' fill=\'none\'><rect x=\'4\' y=\'10\' width=\'48\' height=\'36\' rx=\'3\' stroke=\'var(--ink)\' stroke-width=\'1.8\' stroke-dasharray=\'4 2\'/><circle cx=\'18\' cy=\'24\' r=\'5\' fill=\'rgba(200,136,10,.25)\' stroke=\'var(--gold)\' stroke-width=\'1.5\'/><path d=\'M4 34 L18 22 L28 30 L38 20 L52 32\' stroke=\'var(--accent)\' stroke-width=\'1.8\' fill=\'none\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/></svg></div>'">
       </div> 
       <div class="cs-body">
-        
-        <div class="cs-name">Veterinary Clinic</div>
-        <div class="cs-services-lbl">SEO Works</div>
-        <ul class="cs-list">
-          <li>ON-page SEO</li>
-          <li>Off-page SEO</li>
-          <li>Content Optimisation</li>
-          <li>GMB Optimisation</li>
-        </ul>
+        <div class="cs-name">Paumanok Veterinary Hospital</div>
         <span class="cs-link">
           View Case Study
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -491,27 +491,19 @@ body.hovering .cursor-ring{width:58px;height:58px;background:rgba(232,91,42,.1);
       </div>
     </a>
 
-    <!-- CARD 2 · Marketing Agency -->
-    <a href="agency.html" class="cs-card" data-delay="140">
+    <!-- CARD 2 · Topaz Veterinary Clinic -->
+    <a href="topazcasestudy.html" class="cs-card" data-delay="140">
       <svg class="cs-frame" xmlns="http://www.w3.org/2000/svg">
         <rect x="2" y="2" width="100%" height="100%" rx="4"
           style="width:calc(100% - 4px);height:calc(100% - 4px);"
           fill="none" stroke="var(--accent2)" stroke-width="1.8" stroke-dasharray="6 3"/>
       </svg>
       <div class="cs-img">
-        <img src="case2.jpg" alt="Marketing Agency Website Screenshot"
+        <img src="images/Topazhome.jpg" alt="Topaz Website Screenshot"
           onerror="this.parentElement.innerHTML='<div class=\'cs-img-ph\'><svg width=\'56\' height=\'56\' viewBox=\'0 0 56 56\' fill=\'none\'><rect x=\'4\' y=\'10\' width=\'48\' height=\'36\' rx=\'3\' stroke=\'var(--ink)\' stroke-width=\'1.8\' stroke-dasharray=\'4 2\'/><circle cx=\'18\' cy=\'24\' r=\'5\' fill=\'rgba(200,136,10,.25)\' stroke=\'var(--gold)\' stroke-width=\'1.5\'/><path d=\'M4 34 L18 22 L28 30 L38 20 L52 32\' stroke=\'var(--accent2)\' stroke-width=\'1.8\' fill=\'none\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/></svg></div>'">
       </div>
       <div class="cs-body">
-        <span class="cs-niche" style="color:var(--accent2);"></span>
-        <div class="cs-name">Marketing Agency</div>
-        <div class="cs-services-lbl">SEO Works</div>
-        <ul class="cs-list">
-          <li>Technical SEO Audit</li>
-          <li>Keyword Strategy</li>
-          <li>Content Optimisation</li>
-          <li>Authority Building</li>
-        </ul>
+        <div class="cs-name">Topaz Veterinary Clinic</div>
         <span class="cs-link" style="color:var(--accent2);">
           View Case Study
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -521,27 +513,19 @@ body.hovering .cursor-ring{width:58px;height:58px;background:rgba(232,91,42,.1);
       </div>
     </a>
 
-    <!-- CARD 3 · FMCG Business -->
-    <a href="fmcg.html" class="cs-card" data-delay="280">
+    <!-- CARD 3 · Riverbank Animal Hospital -->
+    <a href="riverbankcasestudy.html" class="cs-card" data-delay="280">
       <svg class="cs-frame" xmlns="http://www.w3.org/2000/svg">
         <rect x="2" y="2" width="100%" height="100%" rx="4"
           style="width:calc(100% - 4px);height:calc(100% - 4px);"
           fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-dasharray="6 3"/>
       </svg>
       <div class="cs-img">
-        <img src="case3.jpg" alt="FMCG Business Website Screenshot"
+        <img src="images/Riverbankhome.jpg" alt="Riverbank Website Screenshot"
           onerror="this.parentElement.innerHTML='<div class=\'cs-img-ph\'><svg width=\'56\' height=\'56\' viewBox=\'0 0 56 56\' fill=\'none\'><rect x=\'4\' y=\'10\' width=\'48\' height=\'36\' rx=\'3\' stroke=\'var(--ink)\' stroke-width=\'1.8\' stroke-dasharray=\'4 2\'/><circle cx=\'18\' cy=\'24\' r=\'5\' fill=\'rgba(200,136,10,.25)\' stroke=\'var(--gold)\' stroke-width=\'1.5\'/><path d=\'M4 34 L18 22 L28 30 L38 20 L52 32\' stroke=\'var(--gold)\' stroke-width=\'1.8\' fill=\'none\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/></svg></div>'">
       </div>
       <div class="cs-body">
-        <span class="cs-niche" style="color:var(--gold);"></span>
-        <div class="cs-name">FMCG Business</div>
-        <div class="cs-services-lbl">SEO Works</div>
-        <ul class="cs-list">
-          <li>E-commerce SEO</li>
-          <li>Product Page Optimisation</li>
-          <li>Category Optimization</li>
-          <li>Amazon &amp; Blinkit Listing</li>
-        </ul>
+        <div class="cs-name">Riverbank Animal Hospital</div>
         <span class="cs-link" style="color:var(--gold);">
           View Case Study
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -653,6 +637,10 @@ body.hovering .cursor-ring{width:58px;height:58px;background:rgba(232,91,42,.1);
   </div>
 </div>
 
+<div class="tools-ticker-wrap">
+  <div class="tools-track" id="toolsTicker"></div>
+</div>
+
 <div id="footer">
   <div class="ft-cta reveal">
 
@@ -679,10 +667,6 @@ body.hovering .cursor-ring{width:58px;height:58px;background:rgba(232,91,42,.1);
         Ready to Scale Your<br><em>Organic Growth?</em>
       </h2>
          <div class="ft-btns">
-        <a href="tel:6290338330" class="ftbtn p">
-          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2.5 1.5H5.5L7 4.5L5 5.5C5.8 7.2 7.8 9.2 9.5 10L10.5 8L13.5 9.5V12.5C13.5 13 13 13.5 12.5 13.5C6.5 13.5 1.5 8.5 1.5 2.5C1.5 2 2 1.5 2.5 1.5Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-          Call Me
-        </a>
         <a href="mailto:diganta.seo@gmail.com" class="ftbtn s">
           <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="1.5" y="3.5" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 4.5L7.5 9L13.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
            Mail Me
@@ -722,6 +706,26 @@ const t=document.getElementById('ticker');
 let h='';
 for(let i=0;i<2;i++) skills.forEach(s=>{h+=`<div class="ticker-item">${s}<span class="tstar">✦</span></div>`;});
 t.innerHTML=h;
+
+// TOOLS TICKER
+const tools=[
+  {name:'Google Search Console'},
+  {name:'Google Analytics'},
+  {name:'Ahrefs'},
+  {name:'Semrush'},
+  {name:'Screaming Frog'},
+  {name:'Google Trends'},
+  {name:'Moz'},
+  {name:'Ubersuggest'},
+  {name:'PageSpeed Insights'},
+  {name:'Yoast SEO'},
+];
+const tt=document.getElementById('toolsTicker');
+let th='';
+for(let i=0;i<2;i++) tools.forEach((tool,idx)=>{
+  th+=`<span class="tool-chip">${tool.name}</span><span class="tool-sep">✦</span>`;
+});
+tt.innerHTML=th;
 
 // SCROLL REVEAL
 const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
