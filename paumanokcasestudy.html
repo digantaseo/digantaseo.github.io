@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paumanok Veterinary Hospital Case study — Diganta Das</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F7F3EE;--ink:#1A1208;--ink-light:#3D2E1A;
+  --accent:#E85B2A;--accent2:#2A6EE8;--gold:#C8880A;
+  --paper:#EFE9DF;--grid-color:rgba(26,18,8,0.055);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background-color:var(--cream);
+  background-image:linear-gradient(var(--grid-color) 1px,transparent 1px),linear-gradient(90deg,var(--grid-color) 1px,transparent 1px);
+  background-size:40px 40px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  color:var(--ink);overflow-x:hidden;
+}
+
+/* ── HEADER ── */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  display:flex;align-items:center;justify-content:center;
+  padding:18px 4vw;
+  border-bottom:1px solid transparent;
+  transition:border-color .3s,background .3s,backdrop-filter .3s;
+}
+.site-header.scrolled{
+  border-color:rgba(26,18,8,.10);
+  background:rgba(247,243,238,.82);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.hdr-nav{display:flex;align-items:center;gap:40px;}
+.hdr-nav a{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:12px;font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink);
+  text-decoration:none;position:relative;
+  opacity:.65;transition:opacity .2s;
+}
+.hdr-nav a::after{
+  content:'';position:absolute;left:0;bottom:-3px;
+  width:0;height:1.5px;background:var(--accent);
+  transition:width .25s ease;
+}
+.hdr-nav a:hover{opacity:1;}
+.hdr-nav a:hover::after{width:100%;}
+
+/* ── CURSOR ── */
+.cursor-ring{position:fixed;width:40px;height:40px;border:2px solid var(--ink);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .2s,border-color .2s;mix-blend-mode:multiply;}
+.cursor-dot{position:fixed;width:6px;height:6px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);}
+body.hovering .cursor-ring{width:58px;height:58px;background:rgba(232,91,42,.1);border-color:var(--accent);}
+
+/* ── HERO ── */
+.case-hero{
+  max-width:1280px;margin:0 auto;
+  padding:110px 4vw 80px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:56px;
+  align-items:center;
+  min-height:90vh;
+}
+
+/* LEFT */
+.hero-left{display:flex;flex-direction:column;gap:0;}
+
+.case-eyebrow{
+  font-family:'Caveat',cursive;font-size:20px;
+  color:var(--accent);margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+}
+.case-eyebrow::before{content:'';width:28px;height:2px;background:var(--accent);display:inline-block;flex-shrink:0;}
+
+.case-title{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(30px,3.8vw,52px);
+  line-height:1.1;margin-bottom:20px;
+}
+.case-title em{color:var(--accent);font-style:italic;}
+
+.case-sub{
+  font-size:15px;line-height:1.8;color:var(--ink-light);
+  margin-bottom:32px;
+}
+
+/* meta pills */
+.case-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;}
+.meta-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--paper);border:1.5px solid rgba(26,18,8,.12);
+  border-radius:100px;padding:7px 16px;
+  font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--ink-light);
+}
+.meta-pill .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+
+/* visit website btn */
+.visit-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--ink);color:var(--cream);
+  padding:14px 28px;font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:800;font-size:12px;letter-spacing:.1em;
+  text-decoration:none;border-radius:4px;
+  text-transform:uppercase;align-self:flex-start;
+  transition:background .2s,transform .15s;
+}
+.visit-btn:hover{background:var(--accent);transform:translateY(-3px);}
+
+/* RIGHT — website screenshot */
+.hero-right{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.site-ss-frame{
+  width:100%;
+  position:relative;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:8px 8px 0 var(--ink);
+  border:2px solid var(--ink);
+  /* 16:9 */
+  aspect-ratio:1900/910;
+  background:var(--paper);
+}
+.site-ss-frame img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:top center;
+  display:block;
+}
+/* browser bar decoration */
+.browser-bar{
+  position:absolute;top:0;left:0;right:0;
+  height:32px;background:var(--ink);
+  display:flex;align-items:center;padding:0 14px;gap:7px;
+  z-index:2;
+}
+.b-dot{width:10px;height:10px;border-radius:50%;}
+.b-url{
+  flex:1;margin-left:10px;
+  background:rgba(247,243,238,.1);border-radius:20px;
+  height:18px;display:flex;align-items:center;padding:0 12px;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:9px;
+  color:rgba(247,243,238,.5);letter-spacing:.04em;
+  white-space:nowrap;overflow:hidden;
+}
+.site-ss-img-area{
+  position:absolute;top:32px;left:0;right:0;bottom:0;
+  overflow:hidden;
+}
+.site-ss-img-area img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:top center;
+  display:block;
+}
+/* floating label on screenshot */
+.ss-float-label{
+  position:absolute;bottom:14px;right:14px;
+  font-family:'Caveat',cursive;font-size:13px;
+  color:rgba(255,255,255,.8);background:rgba(26,18,8,.55);
+  padding:4px 12px;border-radius:20px;
+  backdrop-filter:blur(4px);z-index:3;
+  pointer-events:none;
+}
+
+/* ── STATS ── */
+.stats-section{background:var(--ink);padding:64px 4vw;}
+.stats-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:2px;
+}
+.stat-block{
+  padding:36px 32px;border-right:1px solid rgba(247,243,238,.08);
+  opacity:0;transform:translateY(20px);
+  transition:opacity .6s,transform .6s;
+}
+.stat-block:last-child{border-right:none;}
+.stat-block.visible{opacity:1;transform:translateY(0);}
+.stat-num{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(38px,4.5vw,56px);
+  line-height:1;letter-spacing:-.02em;margin-bottom:10px;
+}
+.stat-label{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:11px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(247,243,238,.45);
+}
+.stat-note{
+  font-family:'Caveat',cursive;font-size:14px;
+  color:rgba(247,243,238,.35);margin-top:6px;
+}
+
+/* ── BODY ── */
+.body-wrap{max-width:1280px;margin:0 auto;padding:80px 4vw;}
+.sec-label{
+  font-family:'Caveat',cursive;font-size:20px;color:var(--accent);
+  margin-bottom:6px;display:flex;align-items:center;gap:12px;
+}
+.sec-label::after{content:'';flex:1;height:1.5px;max-width:180px;
+  background:repeating-linear-gradient(90deg,var(--ink) 0,var(--ink) 4px,transparent 4px,transparent 10px);}
+.sec-title{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(24px,2.6vw,34px);
+  margin-bottom:36px;line-height:1.15;
+}
+
+/* ── GOAL BOX ── */
+.goal-section{max-width:1280px;margin:0 auto;padding:80px 4vw 0;}
+.goal-box{
+  background:var(--ink);border-radius:4px;
+  padding:56px 52px;position:relative;overflow:hidden;
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;
+}
+.goal-box::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:240px;height:240px;border-radius:50%;
+  border:40px solid rgba(247,243,238,.04);
+}
+.goal-eyebrow{font-family:'Caveat',cursive;font-size:18px;color:var(--accent);margin-bottom:14px;}
+.goal-title{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(24px,2.6vw,32px);
+  color:var(--cream);line-height:1.15;
+}
+.goal-title em{color:var(--accent);font-style:italic;}
+.goal-desc{font-size:14px;line-height:1.8;color:rgba(247,243,238,.6);}
+
+/* ── WHAT WE DID ── */
+.wwd-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+}
+.wwd-item{
+  background:#fff;border-radius:4px;padding:22px 20px;
+  border:1.5px solid rgba(26,18,8,.07);
+  opacity:0;transform:translateY(20px);
+  transition:opacity .5s,transform .5s,box-shadow .2s;
+}
+.wwd-item.visible{opacity:1;transform:translateY(0);}
+.wwd-item:hover{box-shadow:4px 4px 0 var(--ink);transform:translateY(-3px);}
+.wwd-icon{
+  width:36px;height:36px;background:var(--paper);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;font-size:16px;
+}
+.wwd-name{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+}
+
+/* ── SCREENSHOTS ── */
+.screenshots-section{
+  background:var(--paper);
+  border-top:1.5px solid var(--ink);
+  border-bottom:1.5px solid var(--ink);
+  padding:80px 4vw;
+  margin-top:80px;
+}
+.screenshots-inner{max-width:1280px;margin:0 auto;}
+.ss-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+
+.ss-card{
+  background:#fff;border-radius:4px;
+  border:1.5px solid rgba(26,18,8,.10);
+  overflow:hidden;
+  opacity:0;transform:translateY(24px);
+  transition:opacity .6s,transform .6s,box-shadow .25s;
+}
+.ss-card.visible{opacity:1;transform:translateY(0);}
+.ss-card:hover{box-shadow:6px 6px 0 var(--ink);}
+
+/* strict 16:9 image area */
+.ss-img-wrap{
+  width:100%;
+  aspect-ratio:1900/910;
+  position:relative;
+  overflow:hidden;
+  background:var(--paper);
+  border-bottom:1.5px solid rgba(26,18,8,.08);
+}
+.ss-img-wrap img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;object-position:top left;
+  display:block;
+}
+.ss-body{padding:22px 24px 26px;}
+.ss-tag{font-family:'Caveat',cursive;font-size:15px;color:var(--gold);margin-bottom:8px;display:block;}
+.ss-title{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:13px;font-weight:800;letter-spacing:.06em;
+  text-transform:uppercase;margin-bottom:8px;
+}
+.ss-desc{font-size:13px;line-height:1.7;color:var(--ink-light);}
+
+/* ── FOOTER ── */
+.ft-cta{
+  position:relative;overflow:hidden;
+  background:var(--ink);padding:100px 4vw 90px;text-align:center;
+}
+.ft-cta-inner{position:relative;z-index:2;max-width:860px;margin:0 auto;}
+.ft-bg-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;}
+.ft-eyebrow{
+  font-family:'Caveat',cursive;font-size:22px;
+  color:var(--accent);margin-bottom:22px;
+  display:inline-flex;align-items:center;gap:12px;
+}
+.ft-eyebrow::before,.ft-eyebrow::after{content:'';display:inline-block;width:40px;height:1.5px;background:var(--accent);flex-shrink:0;}
+.ft-title{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(36px,6vw,76px);
+  line-height:1.06;color:var(--cream);
+  margin-bottom:18px;letter-spacing:-.02em;
+}
+.ft-title em{font-style:italic;color:var(--accent);}
+.ft-sub{
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;line-height:1.7;
+  color:rgba(247,243,238,.55);max-width:480px;margin:0 auto 48px;
+}
+.ft-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.ftbtn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:16px 36px;font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:800;font-size:12px;letter-spacing:.1em;
+  cursor:pointer;text-decoration:none;
+  transition:transform .18s,background .2s,color .2s,border-color .2s;
+  text-transform:uppercase;border-radius:3px;
+}
+.ftbtn.s{background:transparent;color:var(--cream);border:2px solid rgba(247,243,238,.35);}
+.ftbtn.s:hover{border-color:var(--cream);background:rgba(247,243,238,.08);transform:translateY(-3px);}
+.ft-strip{margin-top:60px;font-family:'Caveat',cursive;font-size:14px;color:rgba(247,243,238,.28);letter-spacing:.06em;}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .case-hero{grid-template-columns:1fr;min-height:auto;gap:40px;}
+  .hero-right{order:-1;}
+  .stats-inner{grid-template-columns:repeat(2,1fr);}
+  .stat-block{border-right:none;border-bottom:1px solid rgba(247,243,238,.08);}
+  .wwd-grid{grid-template-columns:repeat(2,1fr);}
+  .ss-grid{grid-template-columns:1fr;}
+  .goal-box{grid-template-columns:1fr;padding:40px 28px;}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor-ring" id="cr"></div>
+<div class="cursor-dot" id="cd"></div>
+
+<!-- HEADER -->
+<header class="site-header" id="site-header">
+  <nav class="hdr-nav">
+    <a href="https://digantaseo.github.io">About Me</a>
+    <a href="/#cards">My Works</a>
+    <a href="#footer" onclick="event.preventDefault();document.getElementById('footer').scrollIntoView({behavior:'smooth'})">Contact Me</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="case-hero">
+
+  <!-- LEFT TEXT -->
+  <div class="hero-left reveal">
+    <div class="case-eyebrow">🐾 Case Study</div>
+    <h1 class="case-title">Paumanok<br><em>Veterinary Hospital</em></h1>
+    <p class="case-sub">Helping a local veterinary clinic increase its online visibility and attract more organic visitors through a data-driven SEO strategy.</p>
+
+    <div class="case-meta">
+      <div class="meta-pill"><span class="dot" style="background:var(--accent);"></span> Veterinary Clinic</div>
+      <div class="meta-pill"><span class="dot" style="background:var(--accent2);"></span> Patchogue, NY</div>
+      <div class="meta-pill"><span class="dot" style="background:var(--gold);"></span> Local SEO</div>
+    </div>
+
+    <a href="https://www.paumanokvethospital.com/" target="_blank" rel="nofollow noopener" class="visit-btn">
+      Visit Website
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 11L11 2M11 2H6M11 2V7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+  <!-- RIGHT — Website Screenshot 16:9 -->
+  <div class="hero-right reveal" style="transition-delay:.15s;">
+    <div class="site-ss-frame">
+      <!-- browser chrome decoration -->
+      <div class="browser-bar">
+        <div class="b-dot" style="background:#E85B2A;"></div>
+        <div class="b-dot" style="background:#C8880A;"></div>
+        <div class="b-dot" style="background:rgba(247,243,238,.25);"></div>
+        <div class="b-url">paumanokvet.com</div>
+      </div>
+      <div class="site-ss-img-area">
+        <img src="images/Paumanokhome.jpg" alt="Tequesta Veterinary Clinic Website Home">
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-inner">
+    <div class="stat-block" style="transition-delay:0s;">
+      <div class="stat-num" style="color:var(--accent);">15K</div>
+      <div class="stat-label">Organic Clicks</div>
+      <div class="stat-note">Past 6 months</div>
+    </div>
+    <div class="stat-block" style="transition-delay:.12s;">
+      <div class="stat-num" style="color:var(--accent2);">2.6M</div>
+      <div class="stat-label">Search Impressions</div>
+      <div class="stat-note">Past 6 months</div>
+    </div>
+    <div class="stat-block" style="transition-delay:.24s;">
+      <div class="stat-num" style="color:var(--gold);">30</div>
+      <div class="stat-label">Keywords on Page 1</div>
+      <div class="stat-note">SERP</div>
+    </div>
+    <div class="stat-block" style="transition-delay:.36s;">
+      <div class="stat-num" style="color:var(--cream);">272K</div>
+      <div class="stat-label">AI Impressions</div>
+      <div class="stat-note">AEO & GEO</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT GOAL -->
+<div class="goal-section">
+  <div class="goal-box reveal">
+    <div>
+      <div class="goal-eyebrow">Project Goal</div>
+      <h2 class="goal-title">Rank Higher On Goggle Search Result<br>Attract More<br><em>Pet Owners.</em></h2>
+    </div>
+    <div>
+      <p class="goal-desc">Paumanok Veterinary Hospital needed stronger local search visibility to attract more pet owners in Patchogue, NY. I conducted a full on-page audit, optimised on-page content around high-intent local keywords, improved site architecture with strategic internal linking, strengthened off-page authority, and monitored performance through Google Search Console — driving consistent organic growth and more appointment-ready visitors month over month.</p>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT WE DID -->
+<div class="body-wrap">
+  <div class="sec-label reveal">🛠️ The Work</div>
+  <h2 class="sec-title reveal">What We Did</h2>
+  <div class="wwd-grid">
+    <div class="wwd-item" data-delay="0"><div class="wwd-icon">🔍</div><div class="wwd-name">Technical SEO Audit</div></div>
+    <div class="wwd-item" data-delay="80"><div class="wwd-icon">📝</div><div class="wwd-name">On-Page Optimisation</div></div>
+    <div class="wwd-item" data-delay="160"><div class="wwd-icon">📍</div><div class="wwd-name">GMB Optimisation</div></div>
+    <div class="wwd-item" data-delay="240"><div class="wwd-icon">🗝️</div><div class="wwd-name">Keyword Research</div></div>
+    <div class="wwd-item" data-delay="320"><div class="wwd-icon">🔗</div><div class="wwd-name">Internal Linking</div></div>
+    <div class="wwd-item" data-delay="400"><div class="wwd-icon">✍️</div><div class="wwd-name">Content Optimisation</div></div>
+    <div class="wwd-item" data-delay="480"><div class="wwd-icon">🌐</div><div class="wwd-name">Off-Page Work</div></div>
+    <div class="wwd-item" data-delay="560"><div class="wwd-icon">📊</div><div class="wwd-name">GSC Monitoring & Reporting</div></div>
+  </div>
+</div>
+
+<!-- PROOF OF GROWTH -->
+<div class="screenshots-section" id="screenshots">
+  <div class="screenshots-inner">
+    <div class="sec-label reveal">📈 Proof of Growth</div>
+    <h2 class="sec-title reveal">Results in Numbers</h2>
+    <div class="ss-grid">
+
+      <div class="ss-card reveal" style="transition-delay:.1s;">
+        <div class="ss-img-wrap">
+          <img src="iamges/Paumanokgsc.jpg" alt="Organic Clicks & Impressions — Google Search Console">
+        </div>
+        <div class="ss-body">
+          <span class="ss-tag">Google Search Console</span>
+          <div class="ss-title">Organic Clicks & Impressions</div>
+          <p class="ss-desc">15K organic clicks and more then 2M impressions over 6 months — a consistent upward trajectory driven by technical fixes, content optimisation, and targeted keyword strategy.</p>
+        </div>
+      </div>
+
+      <div class="ss-card reveal" style="transition-delay:.22s;">
+        <div class="ss-img-wrap">
+          <img src="images/Paumanokgscai.jpg" alt="AI Impressions — Google Search Console">
+        </div>
+        <div class="ss-body">
+          <span class="ss-tag">AI-Powered Search</span>
+          <div class="ss-title">AI Impressions </div>
+          <p class="ss-desc">More then 270K AI impressions show the clinic is being surfaced in AI-generated search answers — a forward-looking signal that brand authority and content structure are built for the future of search.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div id="footer">
+  <div class="ft-cta reveal">
+
+    <svg class="ft-bg-svg" viewBox="0 0 1400 480" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="80" cy="80" r="120" fill="none" stroke="rgba(247,243,238,.06)" stroke-width="40"/>
+      <circle cx="1320" cy="400" r="160" fill="none" stroke="rgba(247,243,238,.05)" stroke-width="50"/>
+      <path d="M60 260 Q100 230 140 270 Q180 310 220 280" stroke="rgba(232,91,42,.25)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-dasharray="6 4"/>
+      <path d="M210 278 L220 280 L213 290" stroke="rgba(232,91,42,.25)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M1340 200 Q1300 230 1260 200 Q1220 170 1180 200" stroke="rgba(232,91,42,.22)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-dasharray="6 4"/>
+      <path d="M1192 202 L1180 200 L1186 190" stroke="rgba(232,91,42,.22)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <text x="140" y="380" font-family="serif" font-size="22" fill="rgba(200,136,10,.35)" transform="rotate(-18,140,380)">✦</text>
+      <text x="1240" y="100" font-family="serif" font-size="18" fill="rgba(200,136,10,.3)" transform="rotate(12,1240,100)">✦</text>
+      <text x="700" y="440" font-family="serif" font-size="14" fill="rgba(200,136,10,.2)">✦</text>
+      <path d="M420 310 Q700 322 980 308" stroke="rgba(232,91,42,.18)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M1280 60 L1270 50 C1265 40 1268 28 1280 26 C1292 28 1295 40 1290 50 Z" stroke="rgba(247,243,238,.2)" stroke-width="1.5" fill="rgba(247,243,238,.06)"/>
+      <circle cx="1280" cy="52" r="3" fill="rgba(232,91,42,.4)"/>
+      <polyline points="40,420 58,400 72,412 88,390 104,402 118,380" stroke="rgba(42,110,232,.3)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <polygon points="114,374 118,380 122,374" fill="rgba(42,110,232,.3)"/>
+    </svg>
+
+    <div class="ft-cta-inner">
+      <div class="ft-eyebrow">Let's Connect</div>
+      <h2 class="ft-title">
+        Ready to Scale Your<br><em>Organic Growth?</em>
+      </h2>
+         <div class="ft-btns">
+        <a href="mailto:diganta.seo@gmail.com" class="ftbtn s">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="1.5" y="3.5" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 4.5L7.5 9L13.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+           Mail Me
+        </a>
+      </div>
+      <div class="ft-strip"> Don't chase rankings. Let rankings chase you. </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// CURSOR
+const cr=document.getElementById('cr'),cd=document.getElementById('cd');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,.ftbtn,.visit-btn').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hovering'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hovering'));
+});
+
+// HEADER SCROLL
+const hdr=document.getElementById('site-header');
+window.addEventListener('scroll',()=>hdr.classList.toggle('scrolled',window.scrollY>40));
+
+// SCROLL REVEAL
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'),+(e.target.dataset.delay||0));
+}),{threshold:.08});
+document.querySelectorAll('.reveal,.stat-block,.ss-card').forEach(el=>obs.observe(el));
+
+const wobs=new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'),+(e.target.dataset.delay||0));
+}),{threshold:.08});
+document.querySelectorAll('.wwd-item').forEach(el=>wobs.observe(el));
+</script>
+</body>
+</html>
